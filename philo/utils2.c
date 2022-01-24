@@ -63,7 +63,7 @@ void	errmalloc(t_ph *philo)
 		free(philo[0].m_display);
 	if (philo != NULL)
 		free(philo);
-	ft_putstr_fd("error malloc failed\n",2);
+	ft_putstr_fd("error malloc failed\n", 2);
 }
 
 int	give_forks(int ph_nbr, t_ph *philo)
@@ -73,7 +73,8 @@ int	give_forks(int ph_nbr, t_ph *philo)
 	i = 0;
 	while (i < ph_nbr)
 	{
-		philo[i].r_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * 1);
+		philo[i].r_fork = (pthread_mutex_t *) \
+			malloc(sizeof(pthread_mutex_t) * 1);
 		if (pthread_mutex_init(philo[i].r_fork, NULL) != 0)
 		{
 			ft_putstr_fd("mutex init failed\n", 2);
@@ -107,6 +108,7 @@ t_ph	*philo_init(t_core *core, t_ph *philo)
 		ft_putstr_fd("mutex init failed\n", 1);
 		return (NULL);
 	}
+	core->philo = philo;
 	init_philo(core, philo);
 	if (!give_forks(core->philo_nbr, philo))
 		return (NULL);

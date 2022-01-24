@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 	philo = philo_init(&core, philo);
 	if (philo == NULL)
 		return (0);
-	core.philo = philo;
 	start_threads(&core);
 	clean_philo(&core);
 	return (0);
